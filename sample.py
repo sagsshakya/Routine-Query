@@ -6,18 +6,6 @@ from datetime import datetime, timedelta
 # Local modules.
 from utils import load_teachers
 
-root_dir = 'data'
-g_11_path = os.path.join(root_dir, 'daily_routine-11.txt')
-g_12_path = os.path.join(root_dir, 'daily_routine-12.txt')
-
-df_11 = pd.read_csv(g_11_path, delimiter = "\t")
-df_12 = pd.read_csv(g_12_path, delimiter = "\t")
-
-# Teachers' list.
-df_college = pd.concat([df_11, df_12]).reset_index(drop = True)
-teachers_college = load_teachers(df_college)
-print(teachers_college)
-
 # Get day.
 query = input("Which date or day you want to access? : ")
 if query not in ("Monday","Tuesday","Wednesday","Thursday","Friday"):

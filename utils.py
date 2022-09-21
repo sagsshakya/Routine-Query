@@ -12,12 +12,12 @@ def load_teachers(dataframe: pd.DataFrame) -> set:
     teachers = set(chain.from_iterable(teachers))  
     return teachers  
     
-def dump_json(df_dict: dict):
+def dump_json(df_dict: dict, filepath: str):
     class JSONEncoder(json.JSONEncoder):
         def default(self, obj):
             if hasattr(obj, 'to_json'):
                 return obj.to_json(orient='records')
             return json.JSONEncoder.default(self, obj)    
 
-    with open('result.json', 'w') as fp:
+    with open(filepath, 'w') as fp:
         json.dump(df_dict, fp, cls=JSONEncoder)
