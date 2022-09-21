@@ -1,13 +1,9 @@
 import os
 import pandas as pd
-import json
-from utils import dump_json, load_teachers
 
-# Load config.
-with open("config.json") as ff:
-    config = json.load(ff)
+from utils import dump_json, load_config, load_teachers
 
-def create_database():
+def create_database(config: dict):
     root_dir = config["intermidiate_path"]           #'data\\intermidiate'
     input_filenames = os.listdir(root_dir)
     input_filepaths = [os.path.join(root_dir, NAME)  for NAME in input_filenames]
@@ -42,4 +38,5 @@ def create_database():
             f.write(f"{name}\n")
             
 if __name__ == '__main__':
-    create_database()
+    config = load_config()
+    create_database(config)

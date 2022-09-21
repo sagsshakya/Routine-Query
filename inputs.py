@@ -33,11 +33,12 @@ def get_day(verbose: bool = True) -> str:
     return day
 
 # Get name of the absentee.
-def get_absentee(verbose: bool = True) -> str:
+def get_absentee(verbose: bool = True) -> list:
     absentee_list = input(f"Name the absentee(s); {info_2}\n: ").lower()
     absentee_list = [name.strip() for name in absentee_list.split(",")]
     if verbose:
-        print(f'\nThe name(s) of absentee(s) is {absentee_list}.')   
+        print(f'\nThe name(s) of absentee(s) is {absentee_list}.') 
+    return absentee_list
         
 def get_input(verbose: bool = True) -> tuple:
     a = get_day(verbose)
