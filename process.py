@@ -1,3 +1,4 @@
+# Necessary imports.
 import numpy as np
 import pandas as pd
 import os
@@ -6,10 +7,15 @@ from datetime import datetime, timedelta
 # Local modules.
 from utils import load_teachers
 
+# Information.
+info_1 = '\n\nYou can use shortcuts like "today", "now", "tomorrow" and "yesterday".\nYou can also use date in the form DD/MM/YYYY.'
+info_2 = '\nIf there are more than one, please separate the names using a comma.'
+
 # Get day.
-query = input("Which date or day you want to access? : ")
-if query not in ("Monday","Tuesday","Wednesday","Thursday","Friday"):
-    if query == "today":
+query = input(f"Which date or day you want to access? {info_1}\n: ")
+
+if query not in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"):
+    if query == "today" or query == "now":
         day = datetime.today().strftime("%A")
     elif query == "tomorrow":
         day = (datetime.today() + timedelta(days = 1)).strftime("%A")
@@ -24,8 +30,8 @@ if query not in ("Monday","Tuesday","Wednesday","Thursday","Friday"):
     print(day)
 
 # Get name of the absentee.
-absentee_list = input("Name the absentee(s); if there are more than one, please separate the names using a comma : ")
-absentee_list = absentee_list.split(",")
+absentee_list = input(f"Name the absentee(s); {info_2}\n: ").lower()
+absentee_list = [name.strip() for name in absentee_list.split(",")]
 
 print(absentee_list)    
 
